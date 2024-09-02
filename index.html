@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QuickGlobal</title>
+  <link rel="icon" href="quickgloballogo.jpg">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style2.css">
+  <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+  integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+/>
+  <script src="script.js" defer></script>
+</head>
+
+
+<body>
+  <h1><b>QuickGlobal</b></h1>
+  <p class="about">Welcome to QuickGlobal—your trusted source for real-time weather updates and currency conversion for over 200 countries. Whether you're a traveler, a global business professional, or simply curious about the world, we’re here to provide you with accurate and timely information, all at the click of a button. Our mission is to empower you with the insights you need to make informed decisions, wherever you are. With an intuitive interface and reliable data, QuickGlobal ensures that staying informed has never been easier.</p>
+ 
+
+
+  <div class="card">
+    <div class="search">
+      <input type="text" class="search-bar" placeholder="Search">
+      <button class="weathercy">
+           Yes! </button>
+    </div>
+    <div class="weather loading">
+      <h2 class="city">Weather in Athone</h2>
+      <h1 class="temp">--</h1>
+      <div class="flex">
+        <img src="weather.png" alt="" class="icon" />
+        <div class="description">Cloudy</div>
+      </div>
+      <div class="humidity">Humidity: 60%</div>
+      <div class="wind">Wind speed: 6.2 km/h</div>
+    </div>
+  </div>
+
+  <!-- swccond div  -->
+  <div class="container">
+    <h2>Currency Converter</h2>
+    <form>
+      <div class="amount">
+        <p>Enter Amount</p> 
+        <input class="box" value="1" type="text" />
+      </div>
+      <div class="dropdown">
+        <div class="from">
+          <p>From</p>
+          <div class="select-container">
+            <img src="https://flagsapi.com/US/flat/64.png" />
+            <select name="from"></select>
+          </div>
+        </div>
+        <i  class="fa-solid fa-arrow-right-arrow-left"></i>
+        <div class="to">
+          <p>To</p>
+          <div class="select-container">
+            <img src="https://flagsapi.com/IN/flat/64.png" />
+            <select name="to"></select>
+          </div>
+        </div>
+      </div>
+      <div class="msg">1USD = 80INR</div>
+      <button class="btncx">Get Exchange Rate</button>
+    </form>
+  </div>
+    <script src="codes.js"></script>
+    <script src="js2.js"></script>
+<footer>
+  <p> copyright © 2024, QuickGlobal, Inc. or its affiliates</p>
+   <p> Made With  &hearts; By Kaleem</p>
+</footer>
+</body>
+</html>

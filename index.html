@@ -1,82 +1,334 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>QuickGlobal</title>
-  <link rel="icon" href="quickgloballogo.jpg">
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="style2.css">
-  <link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-  integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-  crossorigin="anonymous"
-  referrerpolicy="no-referrer"
-/>
-  <script src="script.js" defer></script>
-</head>
+  <link rel="icon" href="quickgloballogo.jpg" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js" defer></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
+    body {
+      font-family: 'Helvetica', sans-serif;
+      background: url('quickglobal.webp') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+      padding: 1rem;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .about {
+      color:#0b3d91;
+      font-size: large;
+      margin: 0.5rem 1rem;
+    }
+
+    .about::first-letter {
+      color: green;
+    }
+
+    .wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 1.5rem;
+    }
+
+    .card, .container {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      padding: 2rem;
+      border-radius: 2rem;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+      width: 350px;
+      max-width: 90vw;
+      transition: 0.3s ease;
+    }
+
+    .card:hover, .container:hover {
+      transform: scale(1.02) rotateY(5deg);
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+    }
+
+    .search {
+      display: flex;
+      justify-content: space-between;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .search-bar {
+      flex-grow: 1;
+      padding: 0.5em;
+      border-radius: 25px;
+      border: none;
+      background: rgba(255,255,255,0.2);
+      color: #fff;
+    }
+
+    .weathercy {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(0,0,0,0.4);
+      color: red;
+      cursor: pointer;
+    }
+
+    .weather .icon {
+      width: 50px;
+    }
+
+    .weather.loading {
+      visibility: hidden;
+      position: relative;
+      min-height: 100px;
+    }
+
+    .weather.loading::after {
+      content: "Loading...";
+      visibility: visible;
+      position: absolute;
+      top: 0;
+      left: 0;
+      color: #ccc;
+    }
+
+    .flex {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .container form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .select-container {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: #feece2;
+      padding: 0.5rem;
+      border-radius: 1rem;
+    }
+
+    .select-container select {
+      flex: 1;
+      border: none;
+      outline: none;
+      background: transparent;
+    }
+
+    .msg {
+      text-align: center;
+      background: white;
+      color: black;
+      padding: 0.5rem;
+      border-radius: 1rem;
+    }
+
+    .btncx {
+      padding: 0.8rem;
+      border-radius: 1rem;
+      background: #feece2;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+      color: 	#0b3d91;
+    }
+
+    @media (max-width: 768px) {
+      .wrapper {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .card, .container {
+        width: 90%;
+      }
+
+      h1 {
+        font-size: 1.8rem;
+      }
+    }
+  .fa-arrows-up-down {
+  font-size: 1.8rem;
+  color: #333;
+  padding-top: 1rem;
+  border-radius: 0.75rem;
+  height: 60px;
+  width: 280px;
+}
+  </style>
+</head>
 
 <body>
   <h1><b>QuickGlobal</b></h1>
-  <p class="about">Welcome to QuickGlobal—your trusted source for real-time weather updates and currency conversion for over 200 countries. Whether you're a traveler, a global business professional, or simply curious about the world, we’re here to provide you with accurate and timely information, all at the click of a button. Our mission is to empower you with the insights you need to make informed decisions, wherever you are. With an intuitive interface and reliable data, QuickGlobal ensures that staying informed has never been easier.</p>
- 
+  <p class="about">Welcome to QuickGlobal—your trusted source for real-time weather updates and currency conversion for over 200 countries.</p>
+  <p class="about">Check the latest weather conditions for any city worldwide and convert currencies instantly with up-to-date exchange rates.</p>
+  <p class="about">QuickGlobal combines convenience and accuracy, making it easy to plan your travels, business, or daily life with confidence.</p>
 
-
-  <div class="card">
-    <div class="search">
-      <input type="text" class="search-bar" placeholder="Search">
-      <button class="weathercy">
-           Yes! </button>
-    </div>
-    <div class="weather loading">
-      <h2 class="city">Weather in Athone</h2>
-      <h1 class="temp">--</h1>
-      <div class="flex">
-        <img src="weather.png" alt="" class="icon" />
-        <div class="description">Cloudy</div>
+  <div class="wrapper">
+    <!-- Weather Card -->
+    <div class="card">
+      <div class="search">
+        <input type="text" class="search-bar" placeholder="Search city" />
+        <button class="weathercy">Go</button>
       </div>
-      <div class="humidity">Humidity: 60%</div>
-      <div class="wind">Wind speed: 6.2 km/h</div>
+      <div class="weather loading">
+        <h2 class="city">Weather in Lucknow</h2>
+        <h1 class="temp">--</h1>
+        <div class="flex">
+          <img src="weather.png" alt="" class="icon" />
+          <div class="description">Cloudy</div>
+        </div>
+        <div class="humidity">Humidity: --%</div>
+        <div class="wind">Wind speed: -- km/h</div>
+      </div>
+    </div>
+
+    <!-- Currency Converter -->
+    <div class="container">
+      <h2>Currency Converter</h2>
+      <form>
+        <div class="amount">
+          <p>Enter Amount</p>
+          <input class="box" value="1" type="number" />
+        </div>
+        <div class="dropdown">
+          <div class="from">
+            <p>From</p>
+            <div class="select-container">
+              <img src="https://flagsapi.com/US/flat/64.png" />
+              <select name="from"></select>
+            </div>
+          </div>
+          <i class="fa-solid fa-arrows-up-down"></i>
+          <div class="to">
+            <p>To</p>
+            <div class="select-container">
+              <img src="https://flagsapi.com/IN/flat/64.png" />
+              <select name="to"></select>
+            </div>
+          </div>
+        </div>
+        <div class="msg">1 USD = 86 INR</div>
+        <button class="btncx">Get Exchange Rate</button>
+      </form>
     </div>
   </div>
 
-  <!-- swccond div  -->
-  <div class="container">
-    <h2>Currency Converter</h2>
-    <form>
-      <div class="amount">
-        <p>Enter Amount</p> 
-        <input class="box" value="1" type="text" />
-      </div>
-      <div class="dropdown">
-        <div class="from">
-          <p>From</p>
-          <div class="select-container">
-            <img src="https://flagsapi.com/US/flat/64.png" />
-            <select name="from"></select>
-          </div>
-        </div>
-        <i  class="fa-solid fa-arrow-right-arrow-left"></i>
-        <div class="to">
-          <p>To</p>
-          <div class="select-container">
-            <img src="https://flagsapi.com/IN/flat/64.png" />
-            <select name="to"></select>
-          </div>
-        </div>
-      </div>
-      <div class="msg">1USD = 80INR</div>
-      <button class="btncx">Get Exchange Rate</button>
-    </form>
-  </div>
-    <script src="codes.js"></script>
-    <script src="js2.js"></script>
-<footer>
-  <p> copyright © 2024, QuickGlobal, Inc. or its affiliates</p>
-   <p> Made With  &hearts; By Kaleem</p>
-</footer>
+  <footer>
+    <p>&copy; 2025 QuickGlobal</p>
+    <p>Made With ❤️ by Kaleem</p>
+  </footer>
+
+  <script>
+    const countryList = {
+      USD: "US", INR: "IN", EUR: "EU", GBP: "GB", JPY: "JP", AUD: "AU", CAD: "CA", CNY: "CN", BRL: "BR", RUB: "RU"
+    };
+
+    const BASE_URL = "https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies";
+    const dropdowns = document.querySelectorAll(".dropdown select");
+    const btn = document.querySelector("form button");
+    const fromCurr = document.querySelector(".from select");
+    const toCurr = document.querySelector(".to select");
+    const msg = document.querySelector(".msg");
+
+    for (let select of dropdowns) {
+      for (let currCode in countryList) {
+        let option = document.createElement("option");
+        option.innerText = currCode;
+        option.value = currCode;
+        if (select.name === "from" && currCode === "USD") option.selected = true;
+        if (select.name === "to" && currCode === "INR") option.selected = true;
+        select.appendChild(option);
+      }
+      select.addEventListener("change", (e) => updateFlag(e.target));
+    }
+
+    function updateFlag(element) {
+      let currCode = element.value;
+      let countryCode = countryList[currCode];
+      let img = element.parentElement.querySelector("img");
+      img.src = `https://flagsapi.com/${countryCode}/flat/64.png`;
+    }
+
+    async function updateExchangeRate() {
+      let amount = document.querySelector(".amount input");
+      let amtVal = parseFloat(amount.value) || 1;
+      amount.value = amtVal;
+
+      const URL = `${BASE_URL}/${fromCurr.value.toLowerCase()}.json`;
+      let response = await fetch(URL);
+      let data = await response.json();
+      let rate = data[fromCurr.value.toLowerCase()][toCurr.value.toLowerCase()];
+      let finalAmount = (amtVal * rate).toFixed(2);
+
+      msg.innerText = `${amtVal} ${fromCurr.value} = ${finalAmount} ${toCurr.value}`;
+    }
+
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      updateExchangeRate();
+    });
+
+    window.addEventListener("load", updateExchangeRate);
+
+    // Weather section
+    const weather = {
+      apiKey: "756053e632227770ce1ffaa8ec3e8bf0",
+      fetchWeather(city) {
+        fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${this.apiKey}`)
+          .then(res => {
+            if (!res.ok) throw new Error("No weather found.");
+            return res.json();
+          })
+          .then(data => this.displayWeather(data));
+      },
+      displayWeather(data) {
+        const { name } = data;
+        const { icon, description } = data.weather[0];
+        const { temp, humidity } = data.main;
+        const { speed } = data.wind;
+        document.querySelector(".city").innerText = `Weather in ${name}`;
+        document.querySelector(".icon").src = `https://openweathermap.org/img/wn/${icon}@2x.png`;
+        document.querySelector(".description").innerText = description;
+        document.querySelector(".temp").innerText = `${temp}°C`;
+        document.querySelector(".humidity").innerText = `Humidity: ${humidity}%`;
+        document.querySelector(".wind").innerText = `Wind speed: ${speed} km/h`;
+        document.querySelector(".weather").classList.remove("loading");
+      },
+      search() {
+        this.fetchWeather(document.querySelector(".search-bar").value);
+      }
+    };
+
+    document.querySelector(".weathercy").addEventListener("click", () => weather.search());
+    document.querySelector(".search-bar").addEventListener("keyup", (e) => {
+      if (e.key === "Enter") weather.search();
+    });
+
+    weather.fetchWeather("Lucknow");
+  </script>
 </body>
 </html>
